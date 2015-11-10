@@ -1,0 +1,86 @@
+<tool id="plot_acmo_correlation" name="Plot AcmoOutput Relationship">
+  <description>Plot Acmo Output Variables Relationship</description>
+  <requirements>
+      <requirement type="package">plot_correlation</requirement>
+      <requirement type="package">R</requirement>
+  </requirements>
+  <command>plot_correlation.sh $acmofile $plot_format $xvariable $yvariable $group1 $group2 $pngoutput</command>
+  <inputs>
+     <param name="acmofile" type="data" format="csv" label="acmooutput(csv)" />
+     <param name="plot_format" type="select" label="Format of the plot">
+         <option selected="yes" value="pdf">PDF</option>
+         <option value="png">PNG</option>
+     </param>
+     <param name="xvariable" type="select" label="Select X Output Variable">
+         <option value="HWAH">Observed harvested yield,dry weigtht(HWAH)</option>
+         <option value="CWAH">Observed total above-ground biomass at harvest (CWAH)</option>
+         <option value="IR_TOT">Total amount of irrigation (IR_TOT)</option>
+         <option value="FEN_TOT">Total N applied (FEN_TOT)</option>
+         <option value="FEP_TOT">Total P applied (FEP_TOT)</option>
+         <option value="FEK_TOT">Total K applied (FEK_TOT)</option>
+         <option value="OM_TOT">Manure and applied organic matter (OM_TOT)</option>
+         <option value="HWAH_S">Simulated harvest yield,dry matter (HWAH_S)</option>
+         <option value="CWAH_S">Simulated above-ground biomass at harvest,dry matter (CWAH_S)</option>
+         <option value="LAIX_S">Simulated leaf area index, maximum (LAIX_S)</option>
+         <option value="PRCP_S">Total precipitation from planting to harvest (PRCP_S)</option>
+         <option value="ETCP_S">Simulated evapotranspiration, planting to harvest (ETCP_S)</option>
+         <option selected="yes" value="NUCM_S">Simulated N uptake during season (NUCM_S)</option>
+         <option value="NLCM_S">Simulated N leached up to harvest maturity (NLCM_S)</option>
+     </param>
+     <param name="yvariable" type="select" label="Select Y Output Variable">
+         <option value="HWAH">Observed harvested yield,dry weigtht(HWAH)</option>
+         <option value="CWAH">Observed total above-ground biomass at harvest (CWAH)</option>
+         <option value="IR_TOT">Total amount of irrigation (IR_TOT)</option>
+         <option value="FEN_TOT">Total N applied (FEN_TOT)</option>
+         <option value="FEP_TOT">Total P applied (FEP_TOT)</option>
+         <option value="FEK_TOT">Total K applied (FEK_TOT)</option>
+         <option value="OM_TOT">Manure and applied organic matter (OM_TOT)</option>
+         <option selected="yes" value="HWAH_S">Simulated harvest yield,dry matter (HWAH_S)</option>
+         <option value="CWAH_S">Simulated above-ground biomass at harvest,dry matter (CWAH_S)</option>
+         <option value="LAIX_S">Simulated leaf area index, maximum (LAIX_S)</option>
+         <option value="PRCP_S">Total precipitation from planting to harvest (PRCP_S)</option>
+         <option value="ETCP_S">Simulated evapotranspiration, planting to harvest (ETCP_S)</option>
+         <option value="NUCM_S">Simulated N uptake during season (NUCM_S)</option>
+         <option value="NLCM_S">Simulated N leached up to harvest maturity (NLCM_S)</option>
+     </param>
+     <param name="group1" type="select" label="Select Group Method 1">
+         <option value="NO">No grouping</option>
+         <option value="FIELD_OVERLAY">Field overlay ID (FIELD_OVERLAY)</option>
+         <option value="SEASONAL_STRATEGY">Seasonal strategy (SEASONAL_STRATEGY)</option>
+         <option value="CLIM_ID">Climate ID (CLIM_ID)</option>
+         <option value="REG_ID">Region ID (REG_ID)</option>
+         <option value="WST_ID">Weather station ID (WST_ID)</option>
+         <option value="SOIL_ID">Soil ID (SOIL_ID)</option>
+         <option value="CUL_ID">Cultivar ID (CUL_ID)</option>
+         <option value="CUL_NAME">Cultivar name (CUL_NAME)</option>
+	 <option value="CROP_MODEL">Crop model (CROP_MODEL)</option>
+     </param>
+     <param name="group2" type="select" label="Select Group Method 2">
+         <option value="NO">No grouping</option>
+         <option value="FIELD_OVERLAY">Field overlay ID (FIELD_OVERLAY)</option>
+         <option value="SEASONAL_STRATEGY">Seasonal strategy (SEASONAL_STRATEGY)</option>
+         <option value="CLIM_ID">Climate ID (CLIM_ID)</option>
+         <option value="REG_ID">Region ID (REG_ID)</option>
+         <option value="WST_ID">Weather station ID (WST_ID)</option>
+         <option value="SOIL_ID">Soil ID (SOIL_ID)</option>
+         <option value="CUL_ID">Cultivar ID (CUL_ID)</option>
+         <option value="CUL_NAME">Cultivar name (CUL_NAME)</option>
+         <option value="CROP_MODEL">Crop model (CROP_MODEL)</option>
+     </param>
+  </inputs>
+  <outputs>
+      <data format="pdf" name="pngoutput" label="Acmo Output Correlation">
+      <change_format>
+          <when input="plot_format" value="png" format="png" />
+      </change_format>
+      </data>
+  </outputs>
+  
+  <help>
+**What it does**
+
+This tool helps to analyze the zipped climate files (generated from tools such as Generate .AgMIP future climate, or others zipped .AgMIP or .csv files). It generates a boxplot presenting the monthly climate anomalies based on daily weather files (.AgMIP or .csv) of single or multi climate scenarios and baseline. User needs to specify the climatic variable that want to plot, and add the entry data through Add New futureclimate and Add New baseline buttons. 
+
+  </help>
+
+</tool>
